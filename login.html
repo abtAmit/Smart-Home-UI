@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Home Login (Demo)</title>
+  <style>
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #6377f1, #24d8e3); color: white; text-align: center; }
+    .container { width: 100%; max-width: 320px; padding: 20px; }
+    .logo svg { width: 80px; height: 80px; stroke: white; stroke-width: 2; fill: none; margin-bottom: 15px; }
+    h1 { font-size: 24px; margin-bottom: 30px; } h1 span { font-weight: bold; }
+    .input-field { background: rgba(255, 255, 255, 0.2); border: none; border-radius: 25px; padding: 12px 15px; margin: 10px 0; width: 100%; box-sizing: border-box; color: white; font-size: 14px; outline: none; }
+    .input-field::placeholder { color: #eee; }
+    .btn { margin-top: 15px; background: white; color: #6366f1; border: none; border-radius: 25px; padding: 12px; width: 100%; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .btn:hover { background: #ddd; }
+    .error { color: #fff; background: rgba(255,0,0,0.3); padding: 5px; border-radius: 5px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1h-6v-6h-4v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
+    </div>
+    <h1>SMART <span>HOME</span></h1>
+    
+    <form id="loginForm">
+      <input type="text" id="userInput" class="input-field" placeholder="Username or Email" required name="username">
+      <input type="password" id="passInput" class="input-field" placeholder="Password" required name="password">
+      <button type="submit" class="btn">Login</button>
+      <p id="errorMsg" class="error" style="display:none;"></p>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    loginForm.addEventListener('submit', function(event) {
+      // Prevent the form from sending data to a server
+      event.preventDefault();
+
+      const username = document.getElementById('userInput').value;
+      const password = document.getElementById('passInput').value;
+
+      // Check credentials
+      if (username === 'admin' && password === 'home') {
+        // SUCCESS: Redirect to index.html
+        window.location.href = "index.html"; 
+      } else {
+        // FAILURE: Show demo alert
+        alert('This is a demo page.\n\nCorrect Username: admin\nCorrect Password: home');
+        
+        // Update error message on screen
+        errorMsg.innerText = 'Demo Mode: Use "admin" & "home"';
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
